@@ -1,0 +1,29 @@
+steps:
+  - name: node:16
+    entrypoint: yarn
+    args:
+      - install
+  - name: node:16
+    entrypoint: yarn
+    args:
+      - run
+      - compile
+  - name: bash
+    entrypoint: cp
+    args:
+      - package.json
+      - build
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    args:
+      - gcloud
+      - functions
+      - deploy
+      - jpyc-transfer-bigquery
+      - --region=$_REGION
+      - --source=$_SOURCE
+      - --entry-point=$_ENTRY_POINT
+      - --trigger-topic=$_TRIGGER_TOPIC
+      - --runtime=nodejs16
+      - --memory=512MB
+      - --timeout=300
+      - --retry
