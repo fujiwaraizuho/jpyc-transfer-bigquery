@@ -1,11 +1,25 @@
 {
-  "extends": "./node_modules/gts/tsconfig-google.json",
-  "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "build"
-  },
-  "include": [
-    "src/**/*.ts",
-    "test/**/*.ts"
-  ]
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es2021",
+		"noImplicitAny": false,
+		"sourceMap": true,
+		"outDir": "build",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"forceConsistentCasingInFileNames": true,
+		"lib": [
+			"es2021",
+			"esnext.asynciterable"
+	  	],
+	  	"moduleResolution": "node",
+	  	"resolveJsonModule": true,
+	},
+	"include": [
+		"src/**/*.ts"
+	],
+	"exclude": [
+	  	"node_modules",
+	]
 }
