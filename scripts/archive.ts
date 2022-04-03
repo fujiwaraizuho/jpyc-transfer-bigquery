@@ -80,7 +80,7 @@ export const selfExec = async (previousBlockNumber: number, currentBlockNumber: 
 const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 (async () => {
-	// 10000000 -> 2670000 を 20000block ごと取得
+	// 10000000 -> 26700000 を 20000block ごと取得
 	const max = 26700000;
 
 	let tmpCount = 0;
