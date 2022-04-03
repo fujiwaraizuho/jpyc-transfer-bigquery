@@ -1,9 +1,9 @@
 import { Datastore } from "@google-cloud/datastore"
 
-export const getCurrentBlocknumber = async (network: string): Promise<number> => {
+export const getPreviousBlocknumber = async (network: string): Promise<number> => {
 	const datastore = new Datastore();
 
-	const query = datastore.createQuery('CurrentBlockNumber')
+	const query = datastore.createQuery('PreviousBlockNumber')
 		.filter('network', network)
 		.order('created_at', {
 			descending: true

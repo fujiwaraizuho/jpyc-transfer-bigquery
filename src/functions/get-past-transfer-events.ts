@@ -1,5 +1,5 @@
 import { Contract, providers, utils } from "ethers";
-import jpycTokenAbi from "../../abis/jpycToken.json";
+import jpycTokenAbi from "../abis/jpycToken.json";
 import { Transaction } from "../types/Transaction";
 
 export const getPastTransferEvent = async (

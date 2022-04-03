@@ -1,12 +1,12 @@
 import { Datastore } from "@google-cloud/datastore"
 
-export const storeCurrentBlocknumber = async (
+export const storePreviousBlocknumber = async (
 	network: string, 
 	blocknumber: number
 ): Promise<void> => {
 	const datastore = new Datastore();
 
-	const taskKey = datastore.key('CurrentBlockNumber');
+	const taskKey = datastore.key('PreviousBlockNumber');
 
 	const entity = {
 		key: taskKey,
