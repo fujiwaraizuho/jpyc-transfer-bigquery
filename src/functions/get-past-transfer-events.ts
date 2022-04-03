@@ -1,12 +1,13 @@
 import { Contract, providers, utils } from "ethers";
 import jpycTokenAbi from "../../abis/jpycToken.json";
+import { Transaction } from "../types/Transaction";
 
 export const getPastTransferEvent = async (
 	provider: providers.BaseProvider, 
 	contract: Contract,
 	fromBlock: number,
 	toBlock: number
-) => {
+): Promise<Transaction[]> => {
 	// fromBlock -> toBlock の間の Transfer Event を取得
 	const rawLogs = await provider.getLogs({
 		fromBlock: fromBlock,
@@ -20,17 +21,17 @@ export const getPastTransferEvent = async (
 	const jpycTokenInterface = new utils.Interface(jpycTokenAbi);
 
 	// 取得したログを整形
-	const txs = rawLogs.map(rawLog => {
+	const txs: Transaction[] = rawLogs.map(rawLog => {
 		const data = jpycTokenInterface.decodeEventLog('Transfer', rawLog.data, rawLog.topics);
 
 		return {
 			txid: rawLog.transactionHash,
-			blockNumber: rawLog.blockNumber,
-			blockHash: rawLog.blockHash,
+			block_number: rawLog.blockNumber,
+			block_hash: rawLog.blockHash,
 			nonce: rawLog.transactionIndex,
-			from: data.from,
-			to: data.to,
-			value: Number.parseInt(utils.formatEther(data.value))
+			from_address: data.from,
+			to_address: data.to,
+			value: utils.formatEther(data.value)
 		};
 	});
 
