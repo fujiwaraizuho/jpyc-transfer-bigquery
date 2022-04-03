@@ -86,7 +86,7 @@ const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 	let tmpCount = 0;
 
 	for (let i = 10000000; i <= max; i += 20000) {
-		await selfExec(tmpCount + 1, i);
+		await selfExec(tmpCount, i);
 
 		tmpCount = i;
 

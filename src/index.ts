@@ -52,7 +52,7 @@ export const exec = async (): Promise<void> => {
 	const jpycTokenContract = new Contract(jpycContractAddress, jpycTokenAbi, provider);
 
 	// 最終処理ブロック高と現在のブロック高の間の TransferEvent を取得
-	const txs = await getPastTransferEvent(provider, jpycTokenContract, previousBlockNumber + 1, targetBlockNumber);
+	const txs = await getPastTransferEvent(provider, jpycTokenContract, previousBlockNumber, targetBlockNumber);
 
 	console.info(`-> TransferEvent TXS Length: ${txs.length}`);
 
