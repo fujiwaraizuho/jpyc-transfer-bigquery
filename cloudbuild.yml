@@ -13,16 +13,21 @@ steps:
     args:
       - package.json
       - build
+  - name: bash
+    entrypoint: cp
+    args:
+      - yarn.lock
+      - build
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     args:
       - gcloud
       - functions
       - deploy
       - jpyc-transfer-bigquery
-      - --region=$_REGION
-      - --source=$_SOURCE
-      - --entry-point=$_ENTRY_POINT
-      - --trigger-topic=$_TRIGGER_TOPIC
+      - --region=asia-northeast1
+      - --source=build
+      - --entry-point=exec
+      - --trigger-topic=jpyc-transfer-bigquery-topic
       - --runtime=nodejs16
       - --memory=512MB
       - --timeout=300
